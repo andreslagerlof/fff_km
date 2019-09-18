@@ -14,6 +14,13 @@ navbar:
     - text: "Statistik"
       icon: fas fa-archive
       href: historik.html
+  right:
+    - text: "Kontakt"
+      icon: fab fa-twitter
+      href: https://twitter.com/andreslagerlof
+    - text: "GitHub"
+      icon: fa-github
+      href: https://github.com/andreslagerlof/fff_km   
 output:
   html_document:
     theme: cosmo
