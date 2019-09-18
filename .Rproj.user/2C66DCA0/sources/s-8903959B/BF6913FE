@@ -12,9 +12,9 @@
     "path" : null,
     "project_path" : null,
     "properties" : {
-        "cacheKey" : "9204A11A",
+        "cacheKey" : "153CE536",
         "caption" : "comp1",
-        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=comp1&cache_key=9204A11A",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=comp1&cache_key=153CE536",
         "displayedObservations" : "18",
         "environment" : "",
         "expression" : "comp1",

@@ -12,9 +12,9 @@
     "path" : null,
     "project_path" : null,
     "properties" : {
-        "cacheKey" : "732E839B",
+        "cacheKey" : "B09910D0",
         "caption" : "stat2",
-        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=stat2&cache_key=732E839B",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=stat2&cache_key=B09910D0",
         "displayedObservations" : "25",
         "environment" : "",
         "expression" : "stat2",
