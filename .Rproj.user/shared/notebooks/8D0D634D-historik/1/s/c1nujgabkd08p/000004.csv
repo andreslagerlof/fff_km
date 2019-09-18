@@ -1,0 +1,4 @@
+"0","# Load dataset"
+"0","result_hist <- read_excel(""C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/KM/KM_webb/fff_km/KM_tabeller.xlsx"")"
+"0","View(result_hist)"
+"0",""

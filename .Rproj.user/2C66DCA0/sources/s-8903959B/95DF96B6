@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1568830280584.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "95DF96B6",
+    "lastKnownWriteTime" : 32651574047080546,
+    "last_content_update" : 1568830280584,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "D46F547D",
+        "caption" : "points",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=points&cache_key=D46F547D",
+        "displayedObservations" : 18,
+        "environment" : "",
+        "expression" : "points",
+        "object" : "points",
+        "preview" : 0,
+        "totalObservations" : 18,
+        "variables" : 2
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

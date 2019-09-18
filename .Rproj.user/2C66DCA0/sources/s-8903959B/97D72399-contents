@@ -1,0 +1,21 @@
+name: "FFF KM"
+navbar:
+  title: "FFF KM"
+  left:
+    - text: "Hem"
+      icon: fa-home
+      href: index.html
+    - text: "Tävlingsdatum"
+      icon: far fa-calendar
+      href: datum_2019.html
+    - text: "Regler och poängsystem"
+      icon: fas fa-info
+      href: om_km.html
+    - text: "Statistik"
+      icon: fas fa-archive
+      href: historik.html
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
+    

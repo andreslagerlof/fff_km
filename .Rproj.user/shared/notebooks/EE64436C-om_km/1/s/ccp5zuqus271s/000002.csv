@@ -1,0 +1,6 @@
+"0","# Create tabel output using kableExtra package"
+"0","kable(points) %>%"
+"0","  kable_styling(bootstrap_options = ""striped"", full_width = F, position = ""left"")"
+"2","Error in as.data.frame.default(x) : 
+  cannot coerce class ‘""function""’ to a data.frame
+"

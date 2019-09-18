@@ -1,0 +1,3 @@
+"0","# Import file and create dataframe"
+"0","points <- read_excel(""C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/KM/KM_webb/fff_km/Poängsystem.xlsx"")"
+"0","View(points)"

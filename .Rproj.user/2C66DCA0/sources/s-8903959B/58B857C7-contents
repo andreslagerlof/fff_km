@@ -1,0 +1,117 @@
+---
+title: "Resultat Vårcupen 2019"
+author: "Skapad av Andrés"
+date: '2019-05-12'
+output: html_document
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(readr)
+library(readxl)
+library(DT)
+```
+
+
+### Slutresultat från Vårcupen
+Nu är Vårcupen klar för detta år med Tor som klar segrare genom att ta två segrar, en 3:e placering och en kvartsfinalsplats.  
+
+CH var den enda fäktaren som ställde upp i samtliga 5 deltävlingarna och lyckades tack vare  en avgörande seger över Karsten i den sista deltävlingen också ta sig förbi Karsten i kampen om 2:a.  
+
+Roligt att notera att det var fler fäktare än vanligt från andra klubbar som deltog i tävlingen denna gång. Linus lyckades med att ta en 5:e plats trots endast 2 starter - starkt!  
+
+För er som är statistikst intresserade har jag nu också lagt till möjligheter att ladda ned resultaten i olika format.   
+__Kom ihåg att de endast är de 4 bästa resultaten som räknas!__
+
+***
+```{r prepare, include=FALSE}
+## -- Import the aggredated data from competition 1-5 in long format in file tot5.csv
+tot5 <- read_delim("C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/Resultat 2019/Beräkningar/tot5.csv", 
+    ";", escape_double = FALSE, col_types = cols(Ranking = col_skip()), 
+    trim_ws = TRUE)
+View(tot5)
+
+
+## -- Make corrections
+# Change wrong name - Joas Sundman to Joar Sundman
+tot5$Namn[tot5$Namn == "Joas Sundman"] <- "Joar Sundman"
+View(tot5)
+
+## -- Calculate points per competition
+
+# Add new variable "points"
+tot5 <- tot5 %>% mutate(points = case_when(
+  Placering == 1 ~ 32,
+  Placering == 2 ~ 26,
+  Placering == 3 ~ 21,
+  Placering == 4 ~ 19,
+  Placering > 4 & Placering < 9 ~ 14,
+  Placering > 8 & Placering < 17 ~ 8,
+  Placering >16 & Placering < 33 ~ 4,
+  TRUE ~ 0
+))
+View(tot5)
+
+## -- Change format for output - create "pivot table" with points per competition
+piv_comp_1to5 <- tot5 %>% 
+  select(Namn, No, points) %>% 
+  spread(No, points)
+View(piv_comp_1to5)
+
+## -- Calculate grand total points for all competitions (1-5)
+grand_tot_1to5 <- tot5 %>% group_by(Namn) %>%
+  summarise(sum_points = sum(points))
+View(grand_tot_1to5)
+
+## -- Calculate grand total points for best 4
+#top_n(4, points) %>% 
+points_4best <- tot5 %>% group_by(Namn) %>%
+  summarise(best4 = sum(tail(sort(points), 4)) ) %>% 
+  arrange(desc(best4))
+View(points_4best)
+
+## -- Prepare the final table
+#Create new piv df with totals column
+res_1to5 <- piv_comp_1to5 %>%
+  full_join(grand_tot_1to5, by = "Namn") %>%
+  full_join(points_4best, by = "Namn") 
+View(res_1to5)
+
+# Create the final dataset in with right sorting order and column names
+final_table <- arrange(res_1to5, desc(best4)) %>% 
+        select(Namn, "1", "2", "3", "4", "5", best4, sum_points) %>% 
+        rename(tot_points = sum_points)
+View(final_table)
+
+```
+
+
+```{r create-table, echo=FALSE}
+datatable(
+  final_table,
+  caption = "Deltävling 1-5 med summering av 4 bästa resultaten och totala poäng",
+  colnames = c("4-bästa" = "best4", "tot" = "tot_points"),
+  extensions = 'Buttons', options = list(
+    dom = 'Bfrtip',
+    buttons = c( 'csv', 'excel', 'pdf', 'print')
+  )
+  )
+```
+
+***
+#### Så här ser poängsystemet ut
+__Placering --- Poäng__  
+* 1 --- 32 poäng  
+* 2     --- 26 poäng  
+* 3     --- 21 poäng  
+* 4     --- 19 poäng  
+* 5 till 8 --- 14 poäng  
+* 9 till 16 --- 8 poäng   
+* 17 till 32 --- 4 poäng   
+
+***
+#### Tack för denna gång!
+Slutligen vill jag tacka för att ni deltagit i tävlingarna! Nästa gång är det KM som gäller, tävlingarna kommer  troligen igång i september.  
+Trevlig fortsättning på våren!  
+Hälsningar,   
+_Andrés_
