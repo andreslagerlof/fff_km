@@ -17,7 +17,7 @@ library(kableExtra)
 library(ggplot2)
 ```
 
-## Resutlat från 2006 till 2018
+## Resultat från 2006 till 2018
 För den nostaligiske har jag lagt upp den här listan över placeringar 1-3 i tidigare års KM-tävlingar. Jag har fått uppgifterna från Jan Tivenius som var tävlingsledare under den perioden. _Tack Janne för hjälpen!_
 
 
