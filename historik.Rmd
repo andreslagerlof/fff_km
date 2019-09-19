@@ -79,7 +79,7 @@ long_hist$Year %>%  n_distinct()
 
 ```{r full_table, echo=FALSE}
 datatable(
-  long_hist,
+  result_hist,
   caption = "Lista över resultat 2006 till 2018",
   extensions = 'Buttons', options = list(
     dom = 'Bfrtip',

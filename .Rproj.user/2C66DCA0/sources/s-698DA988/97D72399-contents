@@ -3,23 +3,23 @@ navbar:
   title: "FFF KM"
   left:
     - text: "Hem"
-      icon: fa-home
+      icon: fa-home fa-fw
       href: index.html
     - text: "Tävlingsdatum"
-      icon: far fa-calendar
+      icon: far fa-calendar fa-fw
       href: datum_2019.html
     - text: "Regler och poängsystem"
-      icon: fas fa-info
+      icon: fas fa-info fa-fw
       href: om_km.html
     - text: "Statistik"
-      icon: fas fa-archive
+      icon: fas fa-archive fa-fw
       href: historik.html
   right:
     - text: "Kontakt"
-      icon: fab fa-twitter
+      icon: fab fa-twitter fa-fw
       href: https://twitter.com/andreslagerlof
     - text: "GitHub"
-      icon: fa-github
+      icon: fa-github fa-fw
       href: https://github.com/andreslagerlof/fff_km   
 output:
   html_document:
