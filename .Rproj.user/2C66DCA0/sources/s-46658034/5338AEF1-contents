@@ -18,7 +18,7 @@ library(ggplot2)
 ```
 
 ## Resutlat från 2006 till 2018
-För den nostaligiske har jag lagt upp den här listan över placeringra 1-3 i tidigare års KM-tävlingar. Jag har fått uppgifterna från Jan Tivenius som var tävlingsledare under den perioden. _Tack Janne för hjälpen!_
+För den nostaligiske har jag lagt upp den här listan över placeringar 1-3 i tidigare års KM-tävlingar. Jag har fått uppgifterna från Jan Tivenius som var tävlingsledare under den perioden. _Tack Janne för hjälpen!_
 
 
 
@@ -48,9 +48,12 @@ View(long_hist)
 #  TRUE ~ "fel"
 #  ))
 
-# Change place variable to levels
+# Add new variable result based on variable but as type level
 long_hist$result <- factor(long_hist$place, ordered = TRUE,
                       levels = c("1:a", "2:a", "3:a"))
+
+# Remove variable place
+long_hist <- long_hist %>%  select(-place)
 
 
 # Create df with name and no of entries
