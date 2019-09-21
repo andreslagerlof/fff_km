@@ -214,7 +214,7 @@ datatable(
 
 Den uppmärksamma tabellnörden ser att det finns vissa tidsluckor på plaketten.  
 
-Första serien med inristningar sträcker sig över perioden 1944 till 1950. Därefter är det en lucka på 22 år där nästa tidserie som omfattar perioden 1972 till 1975. Efter 1975 blir dett ytterligare ett hopp fram till 1982, varefter KM ser ut att ha hållits varje år till dags dato.  
+Första serien med inristningar sträcker sig över perioden 1944 till 1950. Därefter är det en lucka på 22 år där nästa tidserie som omfattar perioden 1972 till 1975 tar vid. Efter 1975 blir dett ytterligare ett hopp fram till 1982, varefter KM ser ut att ha hållits varje år till dags dato.  
 
 ### Analys av segrare på KM-plaketten
 Vad kan man läsa ut från KM-plaketten? Det beror naturligtvis till stor det på vad man är intresserad av att studera. För min del börjar jag med konstatera att det **totalt finns 48 inristningar totalt**, men **endast 19 unika namn**. Det betyder att någon eller av några av namnen dyker upp flera gånger. 
