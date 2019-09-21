@@ -175,3 +175,81 @@ stat2 %>% filter(result == "3:a") %>%
 ```
 
 Wow, Tors 11 pallplatser gjorde att han toppade i alla delkategorier, men i kategorin 3:e platser skuggas han av veteranstjärnan CH. Som ni ser har den sistnämnde lyckats repetera bragden och kan stoltsera med hela två stycken 2:a platser.
+
+## KM-plaketten
+Som FFF:are har säkert flera av er många gånger stått framför den fina silverplaketten över klubbmästare och drömt om att se ert namn bland de lyckliga segrarna.  
+
+Några andra, lyckligt lottade, har kanske istället i tårögd vördnad tittat på ert egna namn på plaketten. Och ytterligare några få har möjligen räknat hur många inristningar som ni gett upphov till.  
+
+Det är ju förstås också möjligt att det finns några som inte ens känner till plakettens existens. För dom kan jag avslöja att det finns en silverplakett på vilken klubbmästares namn och år finns inristat.  
+
+Ovavsett vilken av ovanstående kategorier in tillhör har jag sammanställt informationen på plaketten. Här är informationen på plaketten i tabellform:
+
+```{r km_plakett, include=FALSE}
+# Import dataset with winners (plakett)
+KM_plakett <- read_excel("C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/KM/KM_webb/fff_km/KM_plakett.xlsx", 
+                         col_types = c("text", "text"))
+
+# Dataframe of winners and no of wins per person
+no_victories <-  KM_plakett %>% group_by(Name) %>% count() %>% arrange(desc(n))
+
+# Dataframe of "one hit wonders"
+one_timers <- no_victories %>% filter(n==1) %>% select(Name)
+
+# Dataframe of winners of 2 or more titles
+multi_winners <- no_victories %>% filter(n>1)
+```
+
+
+```{r echo=FALSE}
+datatable(
+  KM_plakett,
+  caption = "Lista över resultat 1944 till 2018",
+  extensions = 'Buttons', options = list(
+    dom = 'Bfrtip',
+    buttons = c( 'csv', 'excel', 'pdf', 'print')
+  )
+  )
+```
+
+Den uppmärksamma tabellnörden ser att det finns vissa tidsluckor på plaketten.  
+
+Första serien med inristningar sträcker sig över perioden 1944 till 1950. Därefter är det en lucka på 22 år där nästa tidserie för perioden 1972 till 1975. Efter 1975 blir dett ytterligare ett hopp fram till 1982, varefter KM ser ut att ha hållits varje år till dags dato.  
+
+### Analys av segrare på KM-plaketten
+Vad kan man läsa ut från KM-plaketten? Det beror naturligtvis till stor det på vad man är intresserad av att studera. För min del börjar jag med konstatera att det **totalt finns 48 inristningar totalt**, men **endast 19 unika namn**. Det betyder att någon eller av några av namnen dyker upp flera gånger. 
+
+
+#### De som vunnit 1 gång
+För spänninens skull börjar vi med en tabell över de som lyckats med bragden att vinna KM 1 gång:  
+
+
+
+```{r table_onetimers, echo=FALSE}
+datatable(
+  one_timers,
+  options = list(pageLength = 11),
+  caption = "Tabell över fäktare som vunnit KM 1 gång"
+  )
+```
+
+Lite roligt att notera är att man i detta segment också kan hitta det enda far- och sonparet! Johan och Kalle kan båda stoltsera med sina namn på listan. 
+
+#### De som vunnit flera gånger
+Redan tidigare har vi kunnat konstatera att det finns fäktare som har flera segrar på sitt samvete. Bland dom är Tor den mest notoriska segraren under perioden 2006 till 2018. Hur ser det ut om man kollar en längre tidsperiod? Svaret ser ni här:
+
+```{r tabell_km_plakett, echo=FALSE}
+multi_winners %>%
+  ggplot( aes(x=reorder(Name, n), n)) +
+  geom_bar(stat = "identity", fill = "gold") +
+  theme_minimal()+
+  coord_flip() +
+  labs(title="Antal segrar totalt, per fäktare", 
+       subtitle = "Namn på FFFs KM-plakett",
+       caption = "Källa: KM-plakett",
+       x= "Fäktare", 
+       y="Antal segrar") +
+  geom_text(aes(label = n), 
+            hjust = -0.3) 
+```
+ Se på tusan om inte Tor dyker upp igen! Hela 12 segrar, dubbelt så många som 2:an Joar! Efter dessa båda kommer en drös fäktare med 4 intekningar.
