@@ -177,13 +177,13 @@ stat2 %>% filter(result == "3:a") %>%
 Wow, Tors 11 pallplatser gjorde att han toppade i alla delkategorier, men i kategorin 3:e platser skuggas han av veteranstjärnan CH. Som ni ser har den sistnämnde lyckats repetera bragden och kan stoltsera med hela två stycken 2:a platser.
 
 ## KM-plaketten
-Som FFF:are har säkert flera av er många gånger stått framför den fina silverplaketten över klubbmästare och drömt om att se ert namn bland de lyckliga segrarna.  
+Som FFF:are har säkert flera av er många gånger stått framför silverplaketten över klubbmästare och drömt om att se ert namn bland segrarna.  
 
-Några andra, lyckligt lottade, har kanske istället i tårögd vördnad tittat på ert egna namn på plaketten. Och ytterligare några få har möjligen räknat hur många inristningar som ni gett upphov till.  
+Några andra har kanske istället i tårögd vördnad tittat på ert egna namn på plaketten. Och ytterligare några få har möjligen räknat hur många inristningar som ni gett upphov till.  
 
 Det är ju förstås också möjligt att det finns några som inte ens känner till plakettens existens. För dom kan jag avslöja att det finns en silverplakett på vilken klubbmästares namn och år finns inristat.  
 
-Ovavsett vilken av ovanstående kategorier in tillhör har jag sammanställt informationen på plaketten. Här är informationen på plaketten i tabellform:
+Ovavsett vilken av ovanstående kategorier ni tillhör har jag sammanställt informationen på plaketten. Här är tabellen:
 
 ```{r km_plakett, include=FALSE}
 # Import dataset with winners (plakett)
@@ -214,7 +214,7 @@ datatable(
 
 Den uppmärksamma tabellnörden ser att det finns vissa tidsluckor på plaketten.  
 
-Första serien med inristningar sträcker sig över perioden 1944 till 1950. Därefter är det en lucka på 22 år där nästa tidserie för perioden 1972 till 1975. Efter 1975 blir dett ytterligare ett hopp fram till 1982, varefter KM ser ut att ha hållits varje år till dags dato.  
+Första serien med inristningar sträcker sig över perioden 1944 till 1950. Därefter är det en lucka på 22 år där nästa tidserie som omfattar perioden 1972 till 1975. Efter 1975 blir dett ytterligare ett hopp fram till 1982, varefter KM ser ut att ha hållits varje år till dags dato.  
 
 ### Analys av segrare på KM-plaketten
 Vad kan man läsa ut från KM-plaketten? Det beror naturligtvis till stor det på vad man är intresserad av att studera. För min del börjar jag med konstatera att det **totalt finns 48 inristningar totalt**, men **endast 19 unika namn**. Det betyder att någon eller av några av namnen dyker upp flera gånger. 
