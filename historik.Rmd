@@ -37,7 +37,7 @@ result_hist <- read_excel("C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlö
 ```{r long_hist, echo=FALSE}
 # Create a long dataset
 long_hist <- result_hist %>% gather(place, name, -1)
-View(long_hist)
+# View(long_hist)
 
 ## I have changed original data - this not needed now
 # long_hist <- long_hist %>% mutate(res =
@@ -177,9 +177,9 @@ stat2 %>% filter(result == "3:a") %>%
 Wow, Tors 11 pallplatser gjorde att han toppade i alla delkategorier, men i kategorin 3:e platser skuggas han av veteranstjärnan CH. Som ni ser har den sistnämnde lyckats repetera bragden och kan stoltsera med hela två stycken 2:a platser.
 
 ## KM-plaketten
-Som FFF:are har säkert flera av er stått framför silverplaketten över klubbmästare och drömt om att se ert namn bland segrarna.  
+Som FFF:are har ni säkert stått framför silverplaketten över klubbmästare och drömt om att se ert namn bland segrarna.  
 
-Några andra har kanske istället i tårögd vördnad tittat på ert eget namn på plaketten. Och ytterligare några har möjligen räknat hur många inristningar som ni gett upphov till.  
+Några andra har kanske, i tårögd vördnad, tittat på ert eget namn på plaketten. Och ytterligare några har möjligen räknat hur många inristningar som ni gett upphov till.  
 
 För dom som inte ens känner till plakettens existens kan jag avslöja att det finns en silverplakett på vilken klubbmästares namn och år finns inristat.  
 
