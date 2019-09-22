@@ -25,7 +25,7 @@ För den nostaligiske har jag lagt upp den här listan över placeringar 1-3 i t
 ```{r table1, include=FALSE}
 # Load dataset
 result_hist <- read_excel("C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/KM/KM_webb/fff_km/KM_tabeller.xlsx")
-View(result_hist)
+# View(result_hist)
 
 ```
 
@@ -58,14 +58,14 @@ long_hist <- long_hist %>%  select(-place)
 
 # Create df with name and no of entries
 no_top3 <- long_hist %>% group_by(name) %>% count() %>% arrange(desc(n)) 
-View(no_top3)
+# View(no_top3)
 
 # Separate name variable in no_top3 df
 no_top3 <- no_top3 %>% separate(name, into = c("firstname", "lastname"))
 
 # Create datafreme with name, result and count of result
 stat2 <- long_hist %>% group_by(name, result) %>% count() %>%arrange(desc(n)) %>%  arrange(result) #%>%  arrange(desc(n))
-View(stat2)
+# View(stat2)
 
 # Separate name variable in stat2 df
 stat2 <- stat2 %>% separate(name, into = c("firstname", "lastname"))
@@ -177,11 +177,11 @@ stat2 %>% filter(result == "3:a") %>%
 Wow, Tors 11 pallplatser gjorde att han toppade i alla delkategorier, men i kategorin 3:e platser skuggas han av veteranstjärnan CH. Som ni ser har den sistnämnde lyckats repetera bragden och kan stoltsera med hela två stycken 2:a platser.
 
 ## KM-plaketten
-Som FFF:are har säkert flera av er många gånger stått framför silverplaketten över klubbmästare och drömt om att se ert namn bland segrarna.  
+Som FFF:are har säkert flera av er stått framför silverplaketten över klubbmästare och drömt om att se ert namn bland segrarna.  
 
-Några andra har kanske istället i tårögd vördnad tittat på ert egna namn på plaketten. Och ytterligare några få har möjligen räknat hur många inristningar som ni gett upphov till.  
+Några andra har kanske istället i tårögd vördnad tittat på ert eget namn på plaketten. Och ytterligare några har möjligen räknat hur många inristningar som ni gett upphov till.  
 
-Det är ju förstås också möjligt att det finns några som inte ens känner till plakettens existens. För dom kan jag avslöja att det finns en silverplakett på vilken klubbmästares namn och år finns inristat.  
+För dom som inte ens känner till plakettens existens kan jag avslöja att det finns en silverplakett på vilken klubbmästares namn och år finns inristat.  
 
 Ovavsett vilken av ovanstående kategorier ni tillhör har jag sammanställt informationen på plaketten. Här är tabellen:
 
@@ -217,7 +217,7 @@ Den uppmärksamma tabellnörden ser att det finns vissa tidsluckor på plaketten
 Första serien med inristningar sträcker sig över perioden 1944 till 1950. Därefter är det en lucka på 22 år där nästa tidserie som omfattar perioden 1972 till 1975 tar vid. Efter 1975 blir dett ytterligare ett hopp fram till 1982, varefter KM ser ut att ha hållits varje år till dags dato.  
 
 ### Analys av segrare på KM-plaketten
-Vad kan man läsa ut från KM-plaketten? Det beror naturligtvis till stor det på vad man är intresserad av att studera. För min del börjar jag med konstatera att det **totalt finns 48 inristningar totalt**, men **endast 19 unika namn**. Det betyder att någon eller av några av namnen dyker upp flera gånger. 
+Vad kan man läsa ut från KM-plaketten? Det beror naturligtvis på vad man är intresserad av att studera. För min del börjar jag med konstatera att det **totalt finns 48 inristningar totalt**, men **endast 19 unika namn**. Det betyder att någon eller av några av namnen dyker upp flera gånger. Här kommer lite mer analys.
 
 
 #### De som vunnit 1 gång
@@ -252,4 +252,4 @@ multi_winners %>%
   geom_text(aes(label = n), 
             hjust = -0.3) 
 ```
- Se på tusan om inte Tor dyker upp igen! Hela 12 segrar, dubbelt så många som 2:an Joar! Efter dessa båda kommer en drös fäktare med 4 intekningar.
+ Se på tusan om inte Tor dyker upp igen! Hela 12 segrar, dubbelt så många som 2:an Joar! Efter dessa båda kommer en drös fäktare med 4 inteckningar.
