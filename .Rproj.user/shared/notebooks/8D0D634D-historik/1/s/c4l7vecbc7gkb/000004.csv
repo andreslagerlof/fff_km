@@ -1,0 +1,7 @@
+"0","datatable("
+"0","  one_timers,"
+"0","  options = list(pageLength = 11),"
+"0","  caption = ""Tabell över fäktare som vunnit KM 1 gång"""
+"0","  )"
+"2","Error in crosstalk::is.SharedData(data) : object 'one_timers' not found
+"
