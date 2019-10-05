@@ -1,0 +1,124 @@
+library(tidyverse)
+library(readxl)
+
+## Import datasets
+
+# Competition 1
+comp1 <- read_excel("C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/Resultat 2019/Resultat_nr1.xlsx")
+View(comp1)
+
+# Competition 2
+comp2 <- read_excel("C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/Resultat 2019/Resultat_nr2.xlsx")
+View(comp2)
+
+# Competition 3
+comp3 <- read_excel("C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/Resultat 2019/Resultat_nr3.xlsx")
+View(comp3)
+
+# Competition 4
+comp4 <- read_excel("C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/Resultat 2019/Resultat_nr4.xlsx")
+View(comp4)
+
+# Competition 5
+comp5 <- read_excel("C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/Resultat 2019/Resultat_no5.xlsx")
+View(comp5)
+
+## Calculate points per competition
+
+## Aggregate all datasets to one dataset
+#For competitions 1-3
+tot3 <- bind_rows(comp1, comp2, comp3)
+View(tot3)
+
+# For competitions 1-4
+tot4 <- bind_rows(comp1, comp2, comp3, comp4)
+View(tot4)
+
+# For competitions 1-5
+tot5 <- bind_rows(comp1, comp2, comp3, comp4, comp5)
+View(tot5)
+
+## Make corrections
+# Change wrong name - Joas Sundman to Joar Sundman
+tot4$Namn[tot4$Namn == "Joas Sundman"] <- "Joar Sundman"
+
+
+## Calculate points per competition
+
+# Add new variable "points"
+tot5 <- tot5 %>% mutate(points = case_when(
+  Placering == 1 ~ 32,
+  Placering == 2 ~ 26,
+  Placering == 3 ~ 21,
+  Placering == 4 ~ 19,
+  Placering > 4 & Placering < 9 ~ 14,
+  Placering > 8 & Placering < 17 ~ 8,
+  Placering >16 & Placering < 33 ~ 4,
+  TRUE ~ 0
+))
+View(tot5)
+
+write_excel_csv2(tot5, "tot5.csv")
+
+##  Change format for output - create "pivot table" with points per competition
+piv_comp_1to5 <- tot5 %>% 
+  select(Namn, No, points) %>% 
+  spread(No, points)
+View(piv_comp_1to5)
+
+### --------- Itermediate calculations --------- ###
+## Calculate grand total points for all competitions (1-4)
+#    grand_tot_1to4 <- tot4 %>% group_by(Namn) %>%
+#      summarise(sum_points = sum(points))
+#    View(grand_tot_1to4)
+#
+######## -------------------------------- ###############
+
+## Calculate grand total points for all competitions (1-5)
+grand_tot_1to5 <- tot5 %>% group_by(Namn) %>%
+  summarise(sum_points = sum(points))
+View(grand_tot_1to5)
+
+## Calculate grand total points for best 4
+#top_n(4, points) %>% 
+points_4best <- tot5 %>% group_by(Namn) %>%
+  summarise(best4 = sum(tail(sort(points), 4)) ) %>% 
+  arrange(desc(best4))
+View(points_4best)
+
+# ------Adding row sums ------------#
+## Input: https://stackoverflow.com/questions/49243122/r-sum-columns-after-spread-without-knowing-column-names
+
+# Create new piv df with totals column
+res_1to5 <- piv_comp_1to5 %>%
+  full_join(grand_tot_1to5, by = "Namn") %>%
+  full_join(points_4best, by = "Namn") # %>% 
+  # arrange(res_1to5, desc(best4)) # This doesn't work
+View(res_1to5)
+
+# In order to 
+xx <- arrange(res_1to5, desc(best4)) %>% 
+        select(Namn, "1", "2", "3", "4", "5", best4, sum_points) %>% 
+        rename(tot_points = sum_points)
+View(xx)
+
+
+## Write to csv using write_excel_csv2 :) --- BEST!
+write_excel_csv2(res_1to4, "res_1to4_5.csv") # Good! Results in different columns 
+
+
+## --------- Other alterenatives for writing to csv:
+write.csv(res_1to3, "res_1to3.csv") # All in same column
+write_csv2(res_1to3, "res_1to3_2.csv") # Different columns but Å, Ä, Ö doesn't work
+write_csv(res_1to3, "res_1to3_3.csv") # Å, Ä, Ö doesn't work
+write_excel_csv(res_1to3, "res_1to3_4.csv") # All in same column
+
+
+
+# Replace NA wit 0 -- Works!!!
+piv_comp_1to3[is.na(piv_comp_1to3)]=0
+View(piv_comp_1to3)
+
+
+
+

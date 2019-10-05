@@ -1,0 +1,255 @@
+---
+title: "Statistik"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+---
+```{r include=FALSE}
+library(tidyverse)
+library(readr)
+library(readxl)
+library(DT)
+library(kableExtra)
+library(ggplot2)
+```
+
+## Resultat från 2006 till 2018
+För den nostaligiske har jag lagt upp den här listan över placeringar 1-3 i tidigare års KM-tävlingar. Jag har fått uppgifterna från Jan Tivenius som var tävlingsledare under den perioden. _Tack Janne för hjälpen!_
+
+
+
+```{r table1, include=FALSE}
+# Load dataset
+result_hist <- read_excel("C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/KM/KM_webb/fff_km/KM_tabeller.xlsx")
+# View(result_hist)
+
+```
+
+
+
+## Analys av perioden 2006 - 2018
+
+
+```{r long_hist, echo=FALSE}
+# Create a long dataset
+long_hist <- result_hist %>% gather(place, name, -1)
+# View(long_hist)
+
+## I have changed original data - this not needed now
+# long_hist <- long_hist %>% mutate(res =
+#  case_when(
+#  results == "Segrare" ~ "1:a",
+#  results == "2:a" ~ "2:a",
+#  results == "3:a" ~ "3:a",
+#  TRUE ~ "fel"
+#  ))
+
+# Add new variable result based on variable but as type level
+long_hist$result <- factor(long_hist$place, ordered = TRUE,
+                      levels = c("1:a", "2:a", "3:a"))
+
+# Remove variable place
+long_hist <- long_hist %>%  select(-place)
+
+
+# Create df with name and no of entries
+no_top3 <- long_hist %>% group_by(name) %>% count() %>% arrange(desc(n)) 
+# View(no_top3)
+
+# Separate name variable in no_top3 df
+no_top3 <- no_top3 %>% separate(name, into = c("firstname", "lastname"))
+
+# Create datafreme with name, result and count of result
+stat2 <- long_hist %>% group_by(name, result) %>% count() %>%arrange(desc(n)) %>%  arrange(result) #%>%  arrange(desc(n))
+# View(stat2)
+
+# Separate name variable in stat2 df
+stat2 <- stat2 %>% separate(name, into = c("firstname", "lastname"))
+
+# Calculate no of years
+long_hist$Year %>%  n_distinct()
+
+
+```
+
+
+```{r full_table, echo=FALSE}
+datatable(
+  result_hist,
+  caption = "Lista över resultat 2006 till 2018",
+  extensions = 'Buttons', options = list(
+    dom = 'Bfrtip',
+    buttons = c( 'csv', 'excel', 'pdf', 'print')
+  )
+  )
+```
+
+En tabell kan vara lite svår att smälta, för att dyrka upp innehållet har jag gjort lite cool analys av historiken. På så vis kan man exempelvis se vilka som har placerat sig väl och hur många segrar eller andra placeringar dom olika fäktarna har lyckats med.
+
+### Antal pallplatser per fäktare
+Vi börjar analysen med att kolla på vilka fäktare som har placerat sig bland de 3 bästa och hur ofta det skett.
+
+```{r no_top_3, echo=FALSE}
+# Create barplot of top 3
+no_top3 %>%  
+  ggplot( aes(x=reorder(firstname, n), n,)) + 
+  geom_bar(stat = "identity", fill = "chocolate") + # , 
+  theme_minimal() +
+  coord_flip() +
+  labs(title="Antal top 3 placeringar", 
+       subtitle = "Perioden 2006 till 2018",
+       caption = "Källa: Janne Tivenius",
+       x= "Fäktare", 
+       y="Antal top 3") +
+  geom_text(aes(label = n), 
+            hjust = -0.25, 
+            color = "#1380A1") 
+```
+
+Som ni kan se har Tor ett överväldigande försprång med 11 pallplatser. Han nästan har lika många pallplatser som Joar, Janne och Andrés tillsammans. Men låt oss titta på hur placeringarna fördelar sig, dvs hur många segrar, 2:a platser och 3:e platser.
+
+### Antal segrar per fäktare
+Vi börjar med segrar:
+
+```{r victories, echo=FALSE}
+# Create barplot of winners
+stat2 %>% filter(result == "1:a") %>% 
+  ggplot( aes(x=reorder(firstname, n), n)) +
+  geom_bar(stat = "identity", fill = "darkolivegreen") +
+  theme_minimal()+
+  coord_flip() +
+  labs(title="Antal segrar per fäktare", 
+       subtitle = "Perioden 2006 till 2018",
+       caption = "Källa: Janne Tivenius",
+       x= "Fäktare", 
+       y="Antal segrar") +
+  geom_text(aes(label = n), 
+            hjust = -0.3, 
+            color = "darkgreen")
+```
+
+Inte oväntat hamnar Tor på toppen igen. Joar  visar också att han ligger en bra bit före klungan av "one hit wonders". Hur ser det ut med 2:a platser?
+
+### Antal 2:a platser per fäktare
+Såhär ser analysen ut om vi kollar på 2:a platser:
+
+```{r seconds, echo=FALSE}
+# Create barplot of seconds
+stat2 %>% filter(result == "2:a") %>% 
+  ggplot( aes(x=reorder(firstname, n), n)) +
+  geom_bar(stat = "identity", fill = "dodgerblue") +
+  theme_minimal()+
+  coord_flip() +
+  labs(title="Antal 2:a platser per fäktare", 
+       subtitle = "Perioden 2006 till 2018",
+       caption = "Källa: Janne Tivenius",
+       x= "Fäktare", 
+       y="Antal 2:a placeringar") +
+  geom_text(aes(label = n), 
+            hjust = -0.3, 
+            color = "#1380A1")
+```
+
+Här är det jämnare, Tor i toppen igen men andra fäktare är ganska nära.
+
+### Antal 3:e platser per fäktare
+Slutligen en figur över fördelningen av 3:e platser:
+
+```{r thirds, echo=FALSE}
+stat2 %>% filter(result == "3:a") %>% 
+  ggplot( aes(x=reorder(firstname, n), n)) +
+  geom_bar(stat = "identity", fill = "wheat4") +
+  theme_minimal()+
+  coord_flip() +
+  labs(title="Antal 3:e platser per fäktare", 
+       subtitle = "Perioden 2006 till 2018",
+       caption = "Källa: Janne Tivenius",
+       x= "Fäktare", 
+       y="Antal 3:e platser") +
+  geom_text(aes(label = n), 
+            hjust = -0.3) 
+```
+
+Wow, Tors 11 pallplatser gjorde att han toppade i alla delkategorier, men i kategorin 3:e platser skuggas han av veteranstjärnan CH. Som ni ser har den sistnämnde lyckats repetera bragden och kan stoltsera med hela två stycken 2:a platser.
+
+## KM-plaketten
+Som FFF:are har ni säkert stått framför silverplaketten över klubbmästare och drömt om att se ert namn bland segrarna.  
+
+Några andra har kanske, i tårögd vördnad, tittat på ert eget namn på plaketten. Och ytterligare några har möjligen räknat hur många inristningar som ni gett upphov till.  
+
+För dom som inte ens känner till plakettens existens kan jag avslöja att det finns en silverplakett på vilken klubbmästares namn och år finns inristat.  
+
+Ovavsett vilken av ovanstående kategorier ni tillhör har jag sammanställt informationen på plaketten. Här är tabellen:
+
+```{r km_plakett, include=FALSE}
+# Import dataset with winners (plakett)
+KM_plakett <- read_excel("C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/KM/KM_webb/fff_km/KM_plakett.xlsx", 
+                         col_types = c("text", "text"))
+
+# Dataframe of winners and no of wins per person
+no_victories <-  KM_plakett %>% group_by(Name) %>% count() %>% arrange(desc(n))
+
+# Dataframe of "one hit wonders"
+one_timers <- no_victories %>% filter(n==1) %>% select(Name)
+
+# Dataframe of winners of 2 or more titles
+multi_winners <- no_victories %>% filter(n>1)
+```
+
+
+```{r echo=FALSE}
+datatable(
+  KM_plakett,
+  caption = "Lista över resultat 1944 till 2018",
+  extensions = 'Buttons', options = list(
+    dom = 'Bfrtip',
+    buttons = c( 'csv', 'excel', 'pdf', 'print')
+  )
+  )
+```
+
+Den uppmärksamma tabellnörden ser att det finns vissa tidsluckor på plaketten.  
+
+Första serien med inristningar sträcker sig över perioden 1944 till 1950. Därefter är det en lucka på 22 år där nästa tidserie som omfattar perioden 1972 till 1975 tar vid. Efter 1975 blir dett ytterligare ett hopp fram till 1982, varefter KM ser ut att ha hållits varje år till dags dato.  
+
+### Analys av segrare på KM-plaketten
+Vad kan man läsa ut från KM-plaketten? Det beror naturligtvis på vad man är intresserad av att studera. För min del börjar jag med konstatera att det **totalt finns 48 inristningar totalt**, men **endast 19 unika namn**. Det betyder att någon eller av några av namnen dyker upp flera gånger. Här kommer lite mer analys.
+
+
+#### De som vunnit 1 gång
+För spänninens skull börjar vi med en tabell över de som lyckats med bragden att vinna KM 1 gång:  
+
+
+
+```{r table_onetimers, echo=FALSE}
+datatable(
+  one_timers,
+  options = list(pageLength = 11),
+  caption = "Tabell över fäktare som vunnit KM 1 gång"
+  )
+```
+
+Lite roligt att notera är att man i detta segment också kan hitta det enda far- och sonparet! Johan och Kalle kan båda stoltsera med sina namn på listan. 
+
+#### De som vunnit flera gånger
+Redan tidigare har vi kunnat konstatera att det finns fäktare som har flera segrar på sitt samvete. Bland dom är Tor den mest notoriska segraren under perioden 2006 till 2018. Hur ser det ut om man kollar en längre tidsperiod? Svaret ser ni här:
+
+```{r tabell_km_plakett, echo=FALSE}
+multi_winners %>%
+  ggplot( aes(x=reorder(Name, n), n)) +
+  geom_bar(stat = "identity", fill = "gold") +
+  theme_minimal()+
+  coord_flip() +
+  labs(title="Antal segrar totalt, per fäktare", 
+       subtitle = "Namn på FFFs KM-plakett",
+       caption = "Källa: KM-plakett",
+       x= "Fäktare", 
+       y="Antal segrar") +
+  geom_text(aes(label = n), 
+            hjust = -0.3) 
+```
+ Se på tusan om inte Tor dyker upp igen! Hela 12 segrar, dubbelt så många som 2:an Joar! Efter dessa båda kommer en drös fäktare med 4 inteckningar.
