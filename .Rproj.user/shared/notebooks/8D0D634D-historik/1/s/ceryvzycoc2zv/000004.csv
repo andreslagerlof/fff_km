@@ -2,18 +2,5 @@
 "0","library(readr)"
 "0","library(readxl)"
 "0","library(DT)"
-"2","Registered S3 method overwritten by 'htmlwidgets':
-  method           from         
-  print.htmlwidget tools:rstudio
-"
 "0","library(kableExtra)"
-"2","
-Attaching package: ‘kableExtra’
-
-"
-"2","The following object is masked from ‘package:dplyr’:
-
-    group_rows
-
-"
 "0","library(ggplot2)"

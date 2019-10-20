@@ -12,16 +12,16 @@
     "path" : null,
     "project_path" : null,
     "properties" : {
-        "cacheKey" : "2B1F156C",
+        "cacheKey" : "5655BAE7",
         "caption" : "points",
-        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=points&cache_key=2B1F156C",
-        "displayedObservations" : 18,
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=points&cache_key=5655BAE7",
+        "displayedObservations" : "18",
         "environment" : "",
         "expression" : "points",
         "object" : "points",
-        "preview" : 0,
-        "totalObservations" : 18,
-        "variables" : 2
+        "preview" : "0",
+        "totalObservations" : "18",
+        "variables" : "2"
     },
     "read_only" : false,
     "read_only_alternatives" : [

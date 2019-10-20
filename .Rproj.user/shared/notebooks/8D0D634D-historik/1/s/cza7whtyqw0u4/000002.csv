@@ -1,6 +1,0 @@
-"0","# Import dataset with winners (plakett)"
-"0","KM_plakett <- read_excel(""C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/KM/KM_webb/fff_km/KM_plakett.xlsx"", "
-"0","                         col_types = c(""text"", ""text""))"
-"0",""
-"0","# Dataframe of winners and no of wins per person"
-"0","no_victories <-  KM_plakett %>% group_by(Name) %>% count() %>% arrange(desc(n))"
