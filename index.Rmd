@@ -88,7 +88,7 @@ res_1to3 <- piv_comp_1to3 %>%
 ```
 ## Resultat efter tredje deltävlingen
 
-I Grigoris frånvaro, som bekant har fäktat sig till 2 raka segrar på lika många försök, låg fältet öppet för ett nytt namn att ta steget upp på översta pallplatsen. Även om fanns var många (17 stycken närmare bestämt) intressenter visade det sig snart att en stjärna lyste starkare än alla andra – **Janne Tivenius**!  
+I Grigoris frånvaro, som bekant har fäktat sig till 2 raka segrar på lika många försök, låg fältet öppet för ett nytt namn att ta steget upp på översta pallplatsen. Även om fanns många (17 stycken närmare bestämt) intressenter visade det sig snart att en stjärna lyste starkare än alla andra – **Janne Tivenius**!  
 
 Nyss hemkommen från sin resa i Egypten slog han till med en insats av pyramidala mått. Med endast ett undantag kunde Janne glatt fylla i endast segrar i protokollet. Fy farao vilken insats!
 
