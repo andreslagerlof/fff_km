@@ -2,18 +2,18 @@
     "collab_server" : "",
     "contents" : "",
     "created" : 1571295244082.000,
-    "dirty" : false,
+    "dirty" : true,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "3732604055",
     "id" : "5B0D649",
-    "lastKnownWriteTime" : 1571601804,
-    "last_content_update" : 1571601804357,
+    "lastKnownWriteTime" : 1572993257,
+    "last_content_update" : 1572993331406,
     "path" : "C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/KM/KM_webb/fff_km/index.Rmd",
     "project_path" : "index.Rmd",
     "properties" : {
-        "cursorPosition" : "90,182",
-        "scrollLine" : "84"
+        "cursorPosition" : "115,0",
+        "scrollLine" : "95"
     },
     "read_only" : false,
     "read_only_alternatives" : [

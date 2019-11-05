@@ -30,13 +30,17 @@ comp2 <- read_excel("C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Kons
 comp3 <- read_excel("C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/KM/KM_webb/fff_km/Result_no3.xlsx")
 # View(comp3)
 
+# Import result from competition no 4
+comp4 <- read_excel("C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/KM/KM_webb/fff_km/Result_no4.xlsx")
+# View(comp3)
+
 ```
 
 
 ```{r add_points, include=FALSE}
 ## Aggregate all datasets to one dataset
 #For competitions 1-3
-tot2 <- bind_rows(comp1, comp2, comp3)
+tot2 <- bind_rows(comp1, comp2, comp3, comp4)
 # View(tot2)
 
 ## Calculate points per competition
@@ -70,43 +74,41 @@ tot <- tot2 %>% mutate(Points = case_when(
 
 ```{r prepare_data, include=FALSE}
 ##  Change format for output - create "pivot table" with points per competition
-piv_comp_1to3 <- tot %>% 
+piv_comp_1to4 <- tot %>% 
   select(Name, CompNo, Place) %>% 
   spread(CompNo, Place) 
 # View(piv_comp_1to3)
 
-## Calculate grand total points for all competitions (1-3)
-grand_tot_1to3 <- tot %>% group_by(Name) %>%
+## Calculate grand total points for all competitions (1-4)
+grand_tot_1to4 <- tot %>% group_by(Name) %>%
   summarise(sum_points = sum(Points))
 # View(grand_tot_1to3)
 
 # Create new piv df with totals column
-res_1to3 <- piv_comp_1to3 %>%
-  full_join(grand_tot_1to3, by = "Name") %>% 
+res_1to4 <- piv_comp_1to4 %>%
+  full_join(grand_tot_1to4, by = "Name") %>% 
   arrange(desc(sum_points))
-#  View(res_1to3)
+ View(res_1to4)
 ```
-## Resultat efter tredje deltävlingen
+## Resultat efter fjärde deltävlingen
 
-I Grigoris frånvaro, som bekant har fäktat sig till 2 raka segrar på lika många försök, låg fältet öppet för ett nytt namn att ta steget upp på översta pallplatsen. Även om fanns många (17 stycken närmare bestämt) intressenter visade det sig snart att en stjärna lyste starkare än alla andra – **Janne Tivenius**!  
+Då har det hänt igen, ytterligare en KM-deltävling och denna gång med en bekant segrare – **Tor Forsse!** Efter två knappa uddastötsförluster tvingades Tor gå en avgörande match mot den gästande Jacob Stymne, och lyckades där med en 5-4 seger knipa den åtråvärda 1:a platsen.
+Med tanke på att man får välja bort en deltävling har Tor nu lagt sig i pole position för att etsa in sitt namn i plaketten ytterligare en gång. Den sista deltävlingen blir avgörande.
 
-Nyss hemkommen från sin resa i Egypten slog han till med en insats av pyramidala mått. Med endast ett undantag kunde Janne glatt fylla i endast segrar i protokollet. Fy farao vilken insats!
-
-
-Och slutligen, glöm inte att nästa KM-deltävling **den 5 november**!  
+Och slutligen, glöm inte att den sista KM-deltävling bakar loss **den 19 november**!  
 
 
 ```{r results_table, eval=FALSE, include=FALSE}
 # Create a table with the DT package
-res_1to2 %>%
+res_1to4 %>%
   kable() %>%
   kable_styling(bootstrap_options = "striped", full_width = F, position = "left") %>% 
-  footnote(general = "Detta är ställningen efter de första 2 deltävlingarna")
+  footnote(general = "Detta är ställningen efter de första 4 deltävlingarna")
 ```
 ``
 ```{r Fine_table, echo=FALSE}
-datatable(res_1to3,
-          colnames = c("Namn" = "Name", "Deltävling 1" = 1, "Deltävling 2" = 2, "Deltävling 3" = 3, "Poäng" = "sum_points"),
+datatable(res_1to4,
+          colnames = c("Namn" = "Name", "Deltävling 1" = 1, "Deltävling 2" = 2, "Deltävling 3" = 3, "Deltävling 4" = 4, "Poäng" = "sum_points"),
            caption = "Placering KM efter 2 deltävlingar", 
            options = list(pageLength = 23)) %>%
           formatStyle('Poäng',  color = 'steelblue', fontWeight = 'bold')
