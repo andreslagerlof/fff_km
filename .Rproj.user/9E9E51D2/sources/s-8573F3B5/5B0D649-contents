@@ -110,7 +110,7 @@ res_1to4 %>%
 datatable(res_1to4,
           colnames = c("Namn" = "Name", "Deltävling 1" = 1, "Deltävling 2" = 2, "Deltävling 3" = 3, "Deltävling 4" = 4, "Poäng" = "sum_points"),
            caption = "Placering KM efter 2 deltävlingar", 
-           options = list(pageLength = 23)) %>%
+           options = list(pageLength = 28)) %>%
           formatStyle('Poäng',  color = 'steelblue', fontWeight = 'bold')
 ```
 

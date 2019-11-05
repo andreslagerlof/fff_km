@@ -12,9 +12,9 @@
     "path" : null,
     "project_path" : null,
     "properties" : {
-        "cacheKey" : "4736B413",
+        "cacheKey" : "5BE97961",
         "caption" : "points",
-        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=points&cache_key=4736B413",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=points&cache_key=5BE97961",
         "displayedObservations" : "18",
         "environment" : "",
         "expression" : "points",
