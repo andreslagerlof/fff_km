@@ -1,0 +1,6 @@
+"0","res_1to5 <- piv_comp_1to5 %>%
+  full_join(grand_tot_1to5, by = ""Namn"") %>%
+  full_join(points_4best, by = ""Namn"") # %>% 
+"
+"2","Error: `by` can't contain join column `Namn` which is missing from LHS
+"

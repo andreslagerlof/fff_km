@@ -1,11 +1,8 @@
-"0","datatable(res_1to4,"
-"0","          colnames = c(""Namn"" = ""Name"", ""Deltävling 1"" = 1, ""Deltävling 2"" = 2, ""Deltävling 3"" = 3, ""Deltävling 4"" = 4, ""Poäng"" = ""sum_points""),"
-"0","           caption = ""Placering KM efter 2 deltävlingar"", "
-"0","           options = list(pageLength = 23)) %>%"
-"0","          formatStyle('Poäng',  color = 'steelblue', fontWeight = 'bold')"
-"2","This version of Shiny is designed to work with 'htmlwidgets' >= 1.5.
-    Please upgrade via install.packages('htmlwidgets').
-"
+"0","datatable(res_1to5,"
+"0","          colnames = c(""Namn"" = ""Name"", ""Deltävling 1"" = 1, ""Deltävling 2"" = 2, ""Deltävling 3"" = 3, ""Deltävling 4"" = 4,""Deltävling 5"" = 5,  ""Poäng totalt"" = ""sum_points"", ""Poäng 4 bästa"" = ""best4""),"
+"0","           caption = ""Slutstresultat KM efter 5 deltävlingar (de 4 bästa resultaten räknas)"", "
+"0","           options = list(pageLength = 28)) %>%"
+"0","          formatStyle('Poäng 4 bästa',  color = 'steelblue', fontWeight = 'bold')"
 "2","the condition has length > 1 and only the first element will be used"
 "2","the condition has length > 1 and only the first element will be used"
 "2","the condition has length > 1 and only the first element will be used"
