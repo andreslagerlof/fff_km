@@ -1,0 +1,39 @@
+---
+title: "Regler och poängsystem"
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(readr)
+library(readxl)
+library(DT)
+library(kableExtra)
+```
+
+```{r points_table, include=FALSE}
+# Import file and create dataframe
+points <- read_excel("C:/Users/AndrésLagerlöf/OneDrive - Andrés Lagerlöf Konsulttjänst AB/Övrigt/Fäktning/KM/KM_webb/fff_km/Poängsystem.xlsx")
+View(points)
+```
+
+
+
+### Tävlingsformat
+KM består av 5 stycken deltävlingar där deltagarna får poäng baserat på placering. Tävlingsformatet är alla möter alla i match om 5 stötar. Matcherna protokollförs och deltagarna ansvarar själva för att fylla i resultat samt att räkna samman antal segrar, utdelade och mottagna stötar samt stötindex.  
+
+### Poängsystem
+Poängsumman från de 4 bästa placeringarna räknas samman och den fäktare med flest poäng vinner. Om flera fäktare har samma poäng vid sammanräkningen avgörs placeringen av bästa placeringen, dvs flest 1:a platser, flest 2:a platser, etc. Om även där lika avgörs placeringarna 1-3 genom omfäktning.  
+
+
+#### Såhär ser poänfördelningen ut
+
+
+```{r echo=FALSE}
+# Create tabel output using kableExtra package
+kable(points) %>%
+  kable_styling(bootstrap_options = "striped", full_width = F, position = "left")
+```
+
+
+### Övrigt
+För fäktare som påbörjat en deltävling är det inte tillåtet att stryka sig utan tävlingsledningens godkännande. Den som stryker sig utan tävlingsledningens godkännande riskerar att bli diskad från resterande deltävlingarna.
