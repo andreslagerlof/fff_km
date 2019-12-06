@@ -1,3 +1,0 @@
-prov <- pivot_longer(result_hist, c("1:a", "2:a", "3:a"), 
-                     names_to = "place", values_to = "name")
-View(prov)
