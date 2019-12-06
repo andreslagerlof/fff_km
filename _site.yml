@@ -23,6 +23,6 @@ navbar:
       href: https://github.com/andreslagerlof/fff_km   
 output:
   html_document:
-    theme: cerulean
+    theme: cosmo
     highlight: textmate
     
