@@ -23,6 +23,7 @@ navbar:
       href: https://github.com/andreslagerlof/fff_km   
 output:
   html_document:
+    theme: united
     css: bootstrap.css
     highlight: textmate
     
